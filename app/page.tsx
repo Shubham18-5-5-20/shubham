@@ -1,103 +1,144 @@
-import Image from "next/image";
+// app/page.tsx
+"use client";
+
+import ProjectCard from "@/components/ProjectCard";
+import { motion } from 'framer-motion';
+import Link from 'next/link'; // <-- IMPORT THE LINK COMPONENT
+
+// Your project data (UNCHANGED)
+const projects = [
+  {
+    title: "RyvX-Founder & Developer",
+    summary: "A content-focused personal website built with a 'less is more' philosophy. It's statically generated for extreme performance and features a minimalist, readable design.",
+    techStack: ["Next.js","React.js", "TypeScript", "Tailwind CSS"],
+    liveUrl: "https://ryvx.pro/",
+    codeUrl: "https://github.com/Shubham18-5-5-20/RyvX",
+    imageUrl: "/ryvx.png",
+    videoUrl: "/ryvx.mp4"
+  },
+  {
+    title: "StriveFlow",
+    summary: "A Trello-inspired Kanban board for task management, featuring a fluid, accessible drag-and-drop interface to effortlessly organize workflows.",
+    techStack: ["Next.js", "JavaScript", "dnd-kit"],
+    liveUrl: "https://strive-flow.vercel.app/",
+    codeUrl: "https://github.com/Shubham18-5-5-20/Strive-Flow",
+    imageUrl: "/striveflow.png",
+    videoUrl: "/striveflow.mp4",
+  },
+  {
+    title: "Mood Tracker",
+    summary: "A minimalist app to help users log and visualize their emotional well-being over time via a calendar view.",
+    techStack: ["HTML", "JavaScript", "Tailwind CSS"],
+    liveUrl: "https://mood-tracker-theta-one.vercel.app/",
+    codeUrl: "https://github.com/Shubham18-5-5-20/mood-tracker",
+    imageUrl: "/mood-tracker.png",
+    videoUrl: "/mood-tracker.mp4",
+  },
+  {
+    title: "LinkFolio",
+    summary: "A full-stack Linktree clone allowing users to create a personalized page for all their important links. Built with a focus on a seamless user experience and theme customization.",
+    techStack: ["React.js", "JavaScript", "Supabase", "Tailwind CSS"],
+    liveUrl: "https://link-folio-eight.vercel.app/",
+    codeUrl: "https://github.com/Shubham18-5-5-20/LinkFolio",
+    imageUrl: "/linkfolio.png",
+    videoUrl: "/linkfolio.mp4",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div>
+      {/* 1. Hero Section */}
+      <motion.section 
+        style={{ textAlign: 'center', padding: '6rem 1rem 4rem' }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 style={{ fontSize: '3.5rem', fontWeight: 'bold', lineHeight: 1.2 }}>
+          Shubham
+        </h1>
+        <h2 style={{ 
+          fontSize: '1.5rem', 
+          color: 'var(--text-secondary)', 
+          marginTop: '1rem',
+          maxWidth: '600px',
+          margin: '1rem auto 0'
+        }}>
+          A Frontend Developer creating intuitive, performant, and beautiful user interfaces.
+        </h2>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        {/* --- THIS IS THE NEW BUTTON --- */}
+        <div style={{ marginTop: '2.5rem' }}>
+          <Link 
+            href="/contact" 
+            className="button-primary" // We keep the class for hover effects
+            style={{
+              // These inline styles will FORCE the button to be visible
+              display: 'inline-block', // Ensures padding and other properties apply correctly
+              backgroundColor: 'var(--accent)',
+              color: '#111111', // Force dark text
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              textDecoration: 'none',
+              fontWeight: 600,
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            Contact Me
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        
+      </motion.section>
+
+      {/* 2. Projects Section (UNCHANGED) */}
+      <motion.section 
+        style={{ padding: '4rem 1rem' }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        <h2 style={{
+          textAlign: 'center',
+          fontSize: '2.5rem',
+          fontWeight: 'bold',
+          marginBottom: '4rem'
+        }}>
+          My Work
+        </h2>
+        <div className="project-grid">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <ProjectCard {...project} />
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* 3. The "Portfolio" Project Section (UNCHANGED) */}
+      <motion.section 
+        style={{ textAlign: 'center', padding: '4rem 1rem', background: 'var(--card-background)', borderRadius: '12px' }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+         <h3 style={{ fontSize: '1.75rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>This Portfolio</h3>
+         <p style={{ margin: '1rem 0', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+           This very site was designed and built by me to act as a central hub for my work.
+         </p>
+         <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+           <a href="https://github.com/Shubham18-5-5-20/portfolio" target="_blank" rel="noopener noreferrer" className="button-primary">
+             View The Code
+           </a>
+         </div>
+      </motion.section>  
     </div>
   );
 }

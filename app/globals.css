@@ -1,26 +1,89 @@
-@import "tailwindcss";
+/* app/globals.css */
 
+/* 1. Define colors for the DARK theme (default) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background-rgb: 17, 17, 17; /* #111111 */
+  --background: rgb(var(--background-rgb));
+  --text-primary: #EAEAEA;
+  --text-secondary: #888888;
+  --accent: #38BDF8;
+  --accent-hover: #0ea5e9;
+  --card-background: #1f1f1f;
+  --card-border: #2f2f2f;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* 2. Define colors for the LIGHT theme */
+[data-theme='light'] {
+  --background-rgb: 249, 249, 249; /* #F9F9F9 */
+  --background: rgb(var(--background-rgb));
+  --text-primary: #1F1F1F;
+  --text-secondary: #666666;
+  --accent: #38BDF8;
+  --accent-hover: #0ea5e9;
+  --card-background: #ffffff;
+  --card-border: #e5e5e5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ... rest of your globals.css remains the same ... */
+body {
+  /* Use the new variable for the body background */
+  background-color: var(--background);
+  color: var(--text-primary);
+  /* ... */
+}
+
+.nav-link:hover {
+  color: var(--text-primary) !important;
+}
+
+.project-grid {
+  display: grid;
+  gap: 2rem;
+  /* Start with 1 column on mobile */
+  grid-template-columns: 1fr;
+}
+
+/* At 768px wide (tablets), go to 2 columns */
+@media (min-width: 768px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* At 1024px wide (desktops), go to 3 columns */
+@media (min-width: 1024px) {
+  .project-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.about-layout {
+  display: grid;
+  gap: 4rem;
+  /* On desktop, use a 2-column layout */
+  grid-template-columns: 2fr 1fr; /* Narrative gets more space */
+}
+
+/* On mobile, stack the columns */
+@media (max-width: 768px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.button-primary {
+    background-color: var(--accent);
+    color: #774747; /* Dark text on a bright button works for both themes */
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    display: inline-block; /* Good practice for link styling */
+}
+
+.button-primary:hover {
+    background-color: var(--accent-hover);
 }
