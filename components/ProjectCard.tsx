@@ -1,8 +1,6 @@
-// components/ProjectCard.tsx
 "use client";
 
 import Image from 'next/image';
-// 1. Import useState and useRef
 import { useState, useRef } from 'react';
 
 type ProjectCardProps = {
@@ -11,8 +9,8 @@ type ProjectCardProps = {
   techStack: string[];
   liveUrl: string;
   codeUrl: string;
-  imageUrl: string; // The thumbnail image
-  videoUrl?: string; // The optional hover video
+  imageUrl: string;
+  videoUrl?: string;
 };
 
 export default function ProjectCard({
@@ -25,10 +23,8 @@ export default function ProjectCard({
   videoUrl,
 }: ProjectCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  // 2. State to track the hover status
   const [isHovered, setIsHovered] = useState(false);
 
-  // 3. Update hover handlers to manage state and playback
   const handleMouseOver = () => {
     setIsHovered(true);
     if (videoRef.current) {
@@ -40,7 +36,6 @@ export default function ProjectCard({
     setIsHovered(false);
     if (videoRef.current) {
       videoRef.current.pause();
-      // Optional: Reset video to the beginning on mouse out
       videoRef.current.currentTime = 0; 
     }
   };
@@ -54,24 +49,22 @@ export default function ProjectCard({
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
+        height: '100%', // This is kept to make all cards the same height
+        boxShadow: 'var(--shadow-md)', 
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
       }}
-      // We don't need the inline transform hover effects anymore if we're using video
-      // But we still need the event handlers
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
       {/* --- MEDIA CONTAINER --- */}
-      <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%' /* 16:9 Aspect Ratio */ }}>
-        
-        {/* The thumbnail image is always rendered */}
+      <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}>
         <Image 
           src={imageUrl} 
           alt={`${title} screenshot`} 
           layout="fill" 
           objectFit="cover"
         />
-        
-        {/* The video is rendered on top IF a videoUrl exists */}
         {videoUrl && (
           <video
             ref={videoRef}
@@ -86,7 +79,6 @@ export default function ProjectCard({
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              // 4. The opacity is controlled by the hover state, with a smooth transition
               opacity: isHovered ? 1 : 0,
               transition: 'opacity 0.4s ease-in-out'
             }}
@@ -94,7 +86,7 @@ export default function ProjectCard({
         )}
       </div>
       
-      {/* --- CONTENT CONTAINER (No changes needed here) --- */}
+      {/* --- CONTENT CONTAINER --- */}
       <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
         <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>{title}</h3>
         <p style={{ margin: '0.75rem 0', color: 'var(--text-secondary)', lineHeight: 1.6, flexGrow: 1 }}>
@@ -120,14 +112,25 @@ export default function ProjectCard({
           <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="button-primary">
             Live Demo
           </a>
-          <a href={codeUrl} target="_blank" rel="noopener noreferrer" style={{
-            padding: '0.75rem 1.5rem',
-            borderRadius: '8px',
-            border: '1px solid var(--accent)',
-            color: 'var(--accent)',
-            fontWeight: 600,
-            textDecoration: 'none'
-          }}>
+
+          {/* --- THIS IS YOUR ORIGINAL BUTTON CODE, RESTORED --- */}
+          <a 
+            href={codeUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            style={{
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              border: '1px solid var(--accent)',
+              color: 'var(--accent)',
+              fontWeight: 600,
+              textDecoration: 'none',
+              transition: 'background-color 0.2s ease, color 0.2s ease' // Added a transition for hover
+            }}
+            // You can add a simple hover effect directly here if you like
+            onMouseOver={(e) => { e.currentTarget.style.backgroundColor = 'var(--accent)'; e.currentTarget.style.color = '#FFFFFF'; }}
+            onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'var(--accent)'; }}
+          >
             Code
           </a>
         </div>
