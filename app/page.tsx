@@ -1,12 +1,13 @@
 // app/page.tsx
 "use client";
 
-import ProjectCard from "@/components/ProjectCard";
 import { motion } from 'framer-motion';
-import Link from 'next/link'; // <-- IMPORT THE LINK COMPONENT
+import Link from 'next/link';
+import ProjectSlider from '@/components/ProjectSlider'; // Make sure this path is correct
+import { Project } from '../types/Project.tsx'; // Make sure this path is correct
 
-// Your project data (UNCHANGED)
-const projects = [
+// The project data to be passed into the slider
+const projectsData: Project[] = [
   {
     title: "RyvX-Founder & Developer",
     summary: "A content-focused personal website built with a 'less is more' philosophy. It's statically generated for extreme performance and features a minimalist, readable design.",
@@ -48,7 +49,7 @@ const projects = [
 export default function Home() {
   return (
     <div>
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section (Unchanged) */}
       <motion.section 
         style={{ textAlign: 'center', padding: '6rem 1rem 4rem' }}
         initial={{ opacity: 0, y: 20 }}
@@ -67,17 +68,15 @@ export default function Home() {
         }}>
           A Frontend Developer creating intuitive, performant, and beautiful user interfaces.
         </h2>
-
-        {/* --- THIS IS THE NEW BUTTON --- */}
+        
         <div style={{ marginTop: '2.5rem' }}>
           <Link 
             href="/contact" 
-            className="button-primary" // We keep the class for hover effects
+            className="button-primary"
             style={{
-              // These inline styles will FORCE the button to be visible
-              display: 'inline-block', // Ensures padding and other properties apply correctly
+              display: 'inline-block',
               backgroundColor: 'var(--accent)',
-              color: '#111111', // Force dark text
+              color: '#111111',
               padding: '0.75rem 1.5rem',
               borderRadius: '8px',
               textDecoration: 'none',
@@ -87,12 +86,11 @@ export default function Home() {
             Contact Me
           </Link>
         </div>
-        
       </motion.section>
 
-      {/* 2. Projects Section (UNCHANGED) */}
+      {/* 2. Projects Section (UPDATED) */}
       <motion.section 
-        style={{ padding: '4rem 1rem' }}
+        style={{ padding: '4rem 0' }} // Adjusted padding for a slider
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -106,24 +104,13 @@ export default function Home() {
         }}>
           My Work
         </h2>
-        <div className="project-grid">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <ProjectCard {...project} />
-            </motion.div>
-          ))}
-        </div>
+        {/* --- The static grid is replaced by the ProjectSlider component --- */}
+        <ProjectSlider projects={projectsData} />
       </motion.section>
 
-      {/* 3. The "Portfolio" Project Section (UNCHANGED) */}
+      {/* 3. The "Portfolio" Project Section (Unchanged) */}
       <motion.section 
-        style={{ textAlign: 'center', padding: '4rem 1rem', background: 'var(--card-background)', borderRadius: '12px' }}
+        style={{ textAlign: 'center', padding: '4rem 1rem', background: 'var(--card-background)', borderRadius: '12px', margin: '4rem 0' }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
