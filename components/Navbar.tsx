@@ -4,7 +4,7 @@
 import Link from 'next/link';
 // 2. Import the usePathname hook from Next.js
 import { usePathname } from 'next/navigation';
-import ThemeToggleButton from './ThemeToggleButton';
+// import ThemeToggleButton from './ThemeToggleButton';
 
 export default function Navbar() {
   // 3. Get the current URL path
@@ -66,7 +66,7 @@ export default function Navbar() {
 
         {/* Right-aligned theme toggler */}
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
-          <ThemeToggleButton />
+          {/* <ThemeToggleButton /> */}
         </div>
       </nav>
     </header>
