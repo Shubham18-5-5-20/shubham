@@ -5,7 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { type EmblaCarouselType, type EmblaOptionsType } from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 
-import { Project } from '../types/Project.tsx';
+import { Project } from '../types/Project';
 import styles from './ProjectSlider.module.css';
 
 const OPTIONS: EmblaOptionsType = { 
