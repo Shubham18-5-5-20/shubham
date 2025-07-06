@@ -4,7 +4,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import ProjectSlider from '@/components/ProjectSlider'; // Make sure this path is correct
-import { Project } from '../types/Project.tsx'; // Make sure this path is correct
+import { Project } from '@/types/Project'; // Make sure this path is correct
 
 // The project data to be passed into the slider
 const projectsData: Project[] = [
