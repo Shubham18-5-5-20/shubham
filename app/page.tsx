@@ -121,7 +121,7 @@ export default function Home() {
            This very site was designed and built by me to act as a central hub for my work.
          </p>
          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-           <a href="https://github.com/Shubham18-5-5-20/portfolio" target="_blank" rel="noopener noreferrer" className="button-primary">
+           <a href="https://github.com/Shubham18-5-5-20/shubham" target="_blank" rel="noopener noreferrer" className="button-primary">
              View The Code
            </a>
          </div>
