@@ -40,9 +40,19 @@ const projectsData: Project[] = [
     summary: "A full-stack Linktree clone allowing users to create a personalized page for all their important links. Built with a focus on a seamless user experience and theme customization.",
     techStack: ["React.js", "JavaScript", "Supabase", "Tailwind CSS"],
     liveUrl: "https://link-folio-eight.vercel.app/",
-    codeUrl: "https://github.com/Shubham18-5-5-20/LinkFolio",
+    codeUrl: "https://github.com/Shubham18-5-5-20/catering-demo",
     imageUrl: "/linkfolio.png",
     videoUrl: "/linkfolio.mp4",
+  },
+];
+{
+    title: "Catering Demo",
+    summary: "A modern, responsive catering website demo with an elegant layout, vibrant imagery, and a clean UI to showcase menus, services, and contact details.",
+    techStack: ["React.js", "JavaScript", "Supabase", "Tailwind CSS"],
+    liveUrl: "https://catering-demo.vercel.app/",
+    codeUrl: "https://github.com/Shubham18-5-5-20/LinkFolio",
+    imageUrl: "/demo-catering.png",
+    videoUrl: "/demo-catering.mp4",
   },
 ];
 
