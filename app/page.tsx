@@ -44,7 +44,6 @@ const projectsData: Project[] = [
     imageUrl: "/linkfolio.png",
     videoUrl: "/linkfolio.mp4",
   },
-];
 {
     title: "Catering Demo",
     summary: "A modern, responsive catering website demo with an elegant layout, vibrant imagery, and a clean UI to showcase menus, services, and contact details.",
